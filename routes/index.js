@@ -4,7 +4,7 @@ var myData = require('./myData.json');
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', myData);
-  // res.send('Working alright...',200);
+  // res.send('Working allright...',200);
   console.log(myData);
 });
 
