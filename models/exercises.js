@@ -14,7 +14,8 @@ var exercisesSchema = new Schema({
 	description: String,
 	desc_note: String,
 	assessment_note: String,
-	revision_criteria: String
+	revision_criteria: String,
+	solutions: []
 });
 
 mongoose.model('exercises', exercisesSchema);

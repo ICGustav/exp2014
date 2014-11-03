@@ -10,6 +10,7 @@ var users = require('./routes/users');
 var posts = require('./routes/posts');
 var courses = require('./routes/courses');
 var exercises = require('./routes/exercises');
+var solutions = require('./routes/solutions');
 var mongoose = require('mongoose'); 
 var fs = require('fs');
 
@@ -38,9 +39,9 @@ app.use('/', routes);
 // app.use('/posts', posts);
 app.use('/courses', courses);
 app.use('/exercises', exercises);
-// app.use('/documents', documents);
+//app.use('/documents', documents);
 // app.use('/participants', participants);
-// app.use('/solutions', solutions);
+app.use('/solutions', solutions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
