@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
+var courses = require('./routes/courses');
+var exercises = require('./routes/exercises');
 var mongoose = require('mongoose'); 
 var fs = require('fs');
 
@@ -24,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/build')));
 
 // load all mongoose models from models folder
 fs.readdirSync(__dirname + '/models').forEach(function (filename) {
@@ -32,8 +34,13 @@ fs.readdirSync(__dirname + '/models').forEach(function (filename) {
 });
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/posts', posts);
+// app.use('/users', users);
+// app.use('/posts', posts);
+app.use('/courses', courses);
+app.use('/exercises', exercises);
+// app.use('/documents', documents);
+// app.use('/participants', participants);
+// app.use('/solutions', solutions);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,7 +56,9 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
     // connection to MongoDB with myApp DB
-    mongoose.connect('mongodb://127.0.0.1/myApp');
+    // mongoose.connect('mongodb://127.0.0.1/myApp');
+        // connection to MongoDB with sqool_export DB
+    mongoose.connect('mongodb://127.0.0.1/sqool_export');
     // catch errors
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
